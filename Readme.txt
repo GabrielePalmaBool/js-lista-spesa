@@ -1,0 +1,1 @@
+Creare una lista della spesa (html+javascript+css) tramite l'uso del ciclo while.
