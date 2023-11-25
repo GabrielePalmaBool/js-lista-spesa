@@ -60,18 +60,34 @@ function InsProd(){
 
     let val1 = prodotto.value;
 
-    ListSpesa.push(val1);
+    if(val1 == null || val1 == "") {
+        alert("inserire un prodotto e selezionare: inserisci");
+    }
 
-    //creo all'interno della mia pagina html il tag li
-    const li = document.createElement("li");
+    else {
 
-    //inserisco all'interno del mio tag li il prodotto nella i-esima posizione
-    li.append(val1);
+        let empty=(ul.lastChild);
 
-    //inserisco nel tag ul il mio li
-     ul.append(li);
+        if(empty == "La lista è vuota"){
 
+             //rimuovo scritta dal documento
+            ul.removeChild(ul.lastChild);
+        }
 
+        ListSpesa.push(val1);
+
+        //creo all'interno della mia pagina html il tag li
+        const li = document.createElement("li");
+
+        //inserisco all'interno del mio tag li il prodotto nella i-esima posizione
+        li.append(val1);
+
+        //inserisco nel tag ul il mio li
+        ul.append(li);
+
+    }
+
+    
 }
 
 
@@ -99,9 +115,25 @@ function DelProd() {
 
             console.log(ListSpesa);
         }
-
         //incremento la variabile i
         i++;
     }
 
+    //rimuovo ultimo elemento inserito in lista sul mio documento html
+    ul.removeChild(ul.lastChild);
+
+    let empty=(ul.lastChild);
+    
+    // Se la lista è vuota
+    if (empty == null) {
+        console.log("ok");
+        //Creo l'elemento all'interno del mio file html
+        const stringa = document.createElement ("p");
+
+        //inserisco scritta all'interno del mio contenuto
+        stringa.append("La lista è vuota");
+
+        //inserisco stringa all'interno del mio contenitore "none"
+        ul.append(stringa);
+    }
 }
