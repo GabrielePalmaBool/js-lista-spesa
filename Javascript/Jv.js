@@ -9,10 +9,13 @@
 const ListSpesa = ["patate", "cipolle", "carote", "bicchieri di plastica", "pasta", "pane", "yogurt"];
 
 
-// acquisisco l'elemento che ha per classe risultato, dove andrò ad inserire il risultato
+// acquisisco l'elemento che ha per classe list , una lista non ordinata
 const ul = document.querySelector(".list");
 
-// selezione del nome/cognome
+// acquisisco l'elemento che ha per classe box
+const Box = document.querySelector(".Box");
+
+// acquisisco l'elemento che ha per classe prodotto: nome del prodotto digitato
 const prodotto = document.querySelector(".prodotto");
 
 // acquisisco l'elemento (bottone) che ha per id calcolo,
@@ -22,9 +25,11 @@ const InsButton = document.getElementById("inserisci");
 const delButton = document.getElementById("cencella");
 
 
+
 //inizializzo variabile contatore
 let i = 0;
 
+//Stampo in pagina lista array
 while (i < ListSpesa.length) {
 
     //acquissco il valore nella posizione i esima della mia lista
@@ -44,12 +49,12 @@ while (i < ListSpesa.length) {
 }
 
 
-
-// Quando viene cliccato il pulsante invia
+// Quando viene cliccato il pulsante inserisci
 InsButton.addEventListener("click",
 
     function () {
-
+        
+        //chiamo la funzione per l'inserimento
         InsProd();
     }
 );
@@ -61,25 +66,28 @@ function InsProd(){
     let val1 = prodotto.value;
 
     if(val1 == null || val1 == "") {
-        alert("inserire un prodotto e selezionare: inserisci");
+        alert("digitare il nome del prodotto e cliccare: inserisci");
     }
 
     else {
 
-        let empty=(ul.lastChild);
+        //acquisisco i valore nel tag p(qualora ci fosse)
+        const number = document.querySelector('#box p');
 
-        if(empty == "La lista è vuota"){
-
+        //Verifico che c'è
+        if(number != null){
+           
              //rimuovo scritta dal documento
-            ul.removeChild(ul.lastChild);
+             Box.removeChild(Box.lastChild);
         }
 
+        //Inserisco prodotto nell'array
         ListSpesa.push(val1);
 
         //creo all'interno della mia pagina html il tag li
         const li = document.createElement("li");
 
-        //inserisco all'interno del mio tag li il prodotto nella i-esima posizione
+        //inserisco all'interno del mio tag li il prodotto scelto
         li.append(val1);
 
         //inserisco nel tag ul il mio li
@@ -96,6 +104,7 @@ delButton.addEventListener("click",
 
     function () {
 
+        //chiamo la funzione per la cancellazione
         DelProd();
     }
 );
@@ -110,7 +119,7 @@ function DelProd() {
 
         if (i == ListSpesa.length - 1){
 
-            //elimino l'ultima posizione
+            //elimino l'elemento in ultima posizione dell'array
             ListSpesa.pop(i);
 
             console.log(ListSpesa);
@@ -126,7 +135,7 @@ function DelProd() {
     
     // Se la lista è vuota
     if (empty == null) {
-        console.log("ok");
+        
         //Creo l'elemento all'interno del mio file html
         const stringa = document.createElement ("p");
 
@@ -134,6 +143,6 @@ function DelProd() {
         stringa.append("La lista è vuota");
 
         //inserisco stringa all'interno del mio contenitore "none"
-        ul.append(stringa);
+        Box.append(stringa);
     }
 }
